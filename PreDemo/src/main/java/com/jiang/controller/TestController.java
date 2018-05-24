@@ -46,4 +46,12 @@ public class TestController {
 		System.out.println("hello");
 		return JsonData.success(1, "jiang", list);
 	}
+	
+	
+	@RequestMapping("/dept")
+	//@ResponseBody
+	public String dept() {
+		
+		return "dept";
+	}
 }
