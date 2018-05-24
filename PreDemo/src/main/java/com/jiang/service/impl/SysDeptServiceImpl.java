@@ -19,6 +19,7 @@ import com.jiang.pojo.SysDeptDto;
 import com.jiang.pojo.SysDeptExample;
 import com.jiang.pojo.SysDeptExample.Criteria;
 import com.jiang.service.SysDeptService;
+import com.alibaba.druid.sql.dialect.sqlserver.ast.stmt.SQLServerSetTransactionIsolationLevelStatement;
 import com.jiang.common.LevelUntil;
 
 @Service
@@ -61,6 +62,7 @@ public class SysDeptServiceImpl implements SysDeptService {
 		 return list;
 	}
 	
+	
 	List<SysDeptDto> getDto(List<SysDept> list)
 	{
 		List<SysDeptDto> list2 = new ArrayList<SysDeptDto>();
@@ -68,7 +70,7 @@ public class SysDeptServiceImpl implements SysDeptService {
 			 SysDeptDto dto = new SysDeptDto();
 			 BeanUtils.copyProperties(sysDept, dto);
 			 list2.add(dto);
-		}
+		 }
 		 return list2;
 	}
 	
@@ -125,16 +127,26 @@ public class SysDeptServiceImpl implements SysDeptService {
 	public void updateDept(SysDeptDto moden) {
 		// TODO Auto-generated method stub
 		
+     	 String level	= getLevel(moden.getParentId());
+     	 
+     	 moden.setLevel(level);
+     	 
+     	 this.updatelevel(moden);
 		
-//		for (int i = 0; i < moden.getChild().size(); i++) {
-//			SysDeptDto mDeptDto =  moden.getChild().get(i);
-//			
-//		}
-		
-		this.mapper.updateByPrimaryKey(moden);
+		 this.mapper.updateByPrimaryKey(moden);
 		
 	}
 
+	void updatelevel(SysDeptDto moden)
+	{
+		for (int i = 0; i < moden.getChild().size(); i++) {
+			SysDeptDto mDeptDto =  moden.getChild().get(i);
+			String level1 = getLevel(mDeptDto.getParentId());
+			mDeptDto.setLevel(level1);
+			updateDept(mDeptDto);
+		}
+	}
+	
 	public List<SysDeptDto> createThreeethond2() {
 		// TODO Auto-generated method stub
 		

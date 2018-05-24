@@ -43,4 +43,14 @@ public class SysDeptServiceTest {
 		List<SysDeptDto> list = this.depservice.createThree();
 		System.out.println(list);
 	}
+	
+	@Test
+	public void test4() {
+		 SysDeptDto moden = new SysDeptDto();
+		 moden.setName("jiang");
+		 moden.setSeq(1);
+		 this.depservice.updateDept(moden);
+		//System.out.println(list);
+	}
+	
 }
