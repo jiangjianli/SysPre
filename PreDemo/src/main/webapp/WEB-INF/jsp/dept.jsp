@@ -207,9 +207,9 @@
 
         function loadDeptTree() {
             $.ajax({
-                url: "/sys/dept/tree.json",
+                url: "/depttree",
                 success : function (result) {
-                    if (result.ret) {
+                    if (result.status) {
                         deptList = result.data;
                         var rendered = Mustache.render(deptListTemplate, {deptList: result.data});
                         $("#deptList").html(rendered);

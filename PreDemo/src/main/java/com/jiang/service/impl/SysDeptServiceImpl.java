@@ -165,6 +165,25 @@ public class SysDeptServiceImpl implements SysDeptService {
 		return list4;
 	}
 	
+	
+	void setList(SysDeptDto mm,List<SysDeptDto> list)
+	{
+		List<SysDeptDto> ll = getlistByParent_id(mm.getId(), list);
+		if (!ll.isEmpty()) {
+			mm.setChild(ll);
+			
+			for (int i = 0; i < ll.size(); i++) {
+				SysDeptDto mDeptDto = ll.get(i);
+				setList(mDeptDto, list);
+			}
+		}else {
+			mm.setChild(new ArrayList<SysDeptDto>());
+		}
+		
+		
+	}
+	
+	
 	List<SysDeptDto> getlistByParent_id(int ids,List<SysDeptDto> list)
 	{
 		List<SysDeptDto> list5 = new ArrayList<SysDeptDto>();
@@ -178,18 +197,7 @@ public class SysDeptServiceImpl implements SysDeptService {
 		return list5;
 	}
 	
-	void setList(SysDeptDto mm,List<SysDeptDto> list)
-	{
-		List<SysDeptDto> ll = getlistByParent_id(mm.getId(), list);
-		
-		mm.setChild(ll);
-		
-		for (int i = 0; i < ll.size(); i++) {
-			SysDeptDto mDeptDto = ll.get(i);
-			setList(mDeptDto, list);
-		}
-		
-	}
+	
 
 	public SysDeptDto findDeptById(int dept_id) {
 		// TODO Auto-generated method stub

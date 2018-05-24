@@ -57,4 +57,11 @@ public class SysDeptServiceTest {
 		//System.out.println(list);
 	}
 	
+	
+	@Test
+	public void test5() {
+		List<SysDeptDto> list = this.depservice.createThreeethond2();
+		System.out.println(list);
+	}
+	
 }
