@@ -1,5 +1,6 @@
 package com.jiang.serviceTest;
 
+import java.util.Date;
 import java.util.List;
 
 import org.junit.Test;
@@ -46,8 +47,11 @@ public class SysDeptServiceTest {
 	
 	@Test
 	public void test4() {
-		 SysDeptDto moden = new SysDeptDto();
-		 moden.setName("jiang");
+		
+		 SysDeptDto moden = this.depservice.findDeptById(12);
+		 moden.setOperateTime(new Date());
+		 moden.setParentId(1);
+		 moden.setName("jjjjjj");
 		 moden.setSeq(1);
 		 this.depservice.updateDept(moden);
 		//System.out.println(list);

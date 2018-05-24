@@ -46,7 +46,7 @@ public class SysDeptServiceImpl implements SysDeptService {
 	{
 		SysDept moden = this.mapper.selectByPrimaryKey(depid);
 		if (moden == null) {
-			return null;
+			return "0";
 		}else {
 			return moden.getLevel();
 		}
@@ -189,6 +189,21 @@ public class SysDeptServiceImpl implements SysDeptService {
 			setList(mDeptDto, list);
 		}
 		
+	}
+
+	public SysDeptDto findDeptById(int dept_id) {
+		// TODO Auto-generated method stub
+		
+		 List<SysDeptDto> list = createThreeethond2();
+		 
+		 for (int i = 0; i < list.size(); i++) {
+			 SysDeptDto dto= list.get(i);
+			 if (dto.getId() == dept_id) {
+				return dto;
+			}
+		}
+		
+		return null;
 	}
 	
 }

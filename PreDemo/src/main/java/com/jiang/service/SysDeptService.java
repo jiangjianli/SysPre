@@ -12,6 +12,8 @@ public interface SysDeptService {
 	
 	void updateDept(SysDeptDto moden);
 	
+	SysDeptDto findDeptById(int dept_id);
+	
 	List<SysDept> getAllDepts();
 	
 	List<SysDeptDto> createThree();
