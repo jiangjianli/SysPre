@@ -10,7 +10,11 @@ public interface SysDeptService {
 	
 	void saveDept(SysDept moden);
 	
+	void updateDept(SysDeptDto moden);
+	
 	List<SysDept> getAllDepts();
 	
 	List<SysDeptDto> createThree();
+	
+	List<SysDeptDto> createThreeethond2();
 }

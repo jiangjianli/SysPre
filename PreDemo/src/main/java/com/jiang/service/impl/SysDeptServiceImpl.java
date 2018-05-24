@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -104,7 +105,7 @@ public class SysDeptServiceImpl implements SysDeptService {
 	{
 		for (int i = 0; i < list.size(); i++) {
 			SysDeptDto sysDeptDto = list.get(i);
-		 //取得下一级Level
+		 //取锟斤拷锟斤拷一锟斤拷Level
 		 String nextleve = LevelUntil.caculateLevel(level, sysDeptDto.getId());
 		 List<SysDeptDto> list2 = map.get(nextleve);
 		 if (list2 == null) {
@@ -118,6 +119,63 @@ public class SysDeptServiceImpl implements SysDeptService {
 		 
 		}
 	
+		
+	}
+
+	public void updateDept(SysDeptDto moden) {
+		// TODO Auto-generated method stub
+		
+		
+//		for (int i = 0; i < moden.getChild().size(); i++) {
+//			SysDeptDto mDeptDto =  moden.getChild().get(i);
+//			
+//		}
+		
+		this.mapper.updateByPrimaryKey(moden);
+		
+	}
+
+	public List<SysDeptDto> createThreeethond2() {
+		// TODO Auto-generated method stub
+		
+		 List<SysDept> list2 = getAllDepts();
+		 
+		 List<SysDeptDto> list3 = getDto(list2);
+		 
+		 List<SysDeptDto> list4 = getlistByParent_id(0, list3);
+		 
+		for (int i = 0; i < list4.size(); i++) {
+			SysDeptDto mDeptDto = list4.get(i);
+			//List<SysDeptDto> list6 = getlistByParent_id(mDeptDto.getId(), list3);
+			setList(mDeptDto, list3);
+		}
+		
+		return list4;
+	}
+	
+	List<SysDeptDto> getlistByParent_id(int ids,List<SysDeptDto> list)
+	{
+		List<SysDeptDto> list5 = new ArrayList<SysDeptDto>();
+		for (int i = 0; i < list.size(); i++) {
+			SysDeptDto mDeptDto = list.get(i);
+			if (mDeptDto.getParentId() == ids) {
+				list5.add(mDeptDto);
+			}
+		}
+		
+		return list5;
+	}
+	
+	void setList(SysDeptDto mm,List<SysDeptDto> list)
+	{
+		List<SysDeptDto> ll = getlistByParent_id(mm.getId(), list);
+		
+		mm.setChild(ll);
+		
+		for (int i = 0; i < ll.size(); i++) {
+			SysDeptDto mDeptDto = ll.get(i);
+			setList(mDeptDto, list);
+		}
 		
 	}
 	

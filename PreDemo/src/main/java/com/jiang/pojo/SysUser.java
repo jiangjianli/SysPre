@@ -112,4 +112,16 @@ public class SysUser {
     public void setOperateIp(String operateIp) {
         this.operateIp = operateIp == null ? null : operateIp.trim();
     }
+
+	@Override
+	public String toString() {
+		return "SysUser [id=" + id + ", username=" + username + ", telephone=" + telephone + ", mail=" + mail
+				+ ", passworld=" + passworld + ", deptId=" + deptId + ", status=" + status + ", remark=" + remark
+				+ ", operateTime=" + operateTime + ", operator=" + operator + ", operateIp=" + operateIp + "]";
+	}
+
+	
+    
+    
+    
 }

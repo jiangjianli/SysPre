@@ -82,4 +82,13 @@ public class SysRole {
     public void setOperateIp(String operateIp) {
         this.operateIp = operateIp == null ? null : operateIp.trim();
     }
+
+	@Override
+	public String toString() {
+		return "SysRole [id=" + id + ", name=" + name + ", type=" + type + ", status=" + status + ", remark=" + remark
+				+ ", operator=" + operator + ", operateTime=" + operateTime + ", operateIp=" + operateIp + "]";
+	}
+    
+    
+    
 }

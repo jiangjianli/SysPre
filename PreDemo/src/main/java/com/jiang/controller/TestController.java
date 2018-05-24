@@ -37,4 +37,13 @@ public class TestController {
 		System.out.println("hello");
 		return JsonData.success(1, "jiang", list);
 	}
+	
+	
+	@RequestMapping("/depttree1")
+	@ResponseBody
+	public JsonData test2() {
+		List<SysDeptDto> list = this.deptservice.createThreeethond2();
+		System.out.println("hello");
+		return JsonData.success(1, "jiang", list);
+	}
 }
