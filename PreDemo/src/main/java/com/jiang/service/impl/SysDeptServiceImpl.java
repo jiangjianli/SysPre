@@ -197,21 +197,48 @@ public class SysDeptServiceImpl implements SysDeptService {
 		return list5;
 	}
 	
-	
+	public SysDeptDto findDeptById(int dept_id)
+	{
+		List<SysDeptDto> list = createThreeethond2();
+		
+		
+		return findDeptById1(dept_id,list);
+		
+	}
 
-	public SysDeptDto findDeptById(int dept_id) {
+	 SysDeptDto findDeptById1(int dept_id ,List<SysDeptDto> list) {
 		// TODO Auto-generated method stub
 		
-		 List<SysDeptDto> list = createThreeethond2();
-		 
-		 for (int i = 0; i < list.size(); i++) {
-			 SysDeptDto dto= list.get(i);
-			 if (dto.getId() == dept_id) {
-				return dto;
-			}
-		}
+		 //List<SysDeptDto> list = createThreeethond2();
 		
-		return null;
+			
+			 for (int i = 0; i < list.size(); i++) {
+				 SysDeptDto dto= list.get(i);
+				 if (dto.getId() == dept_id) {
+					 return dto;
+				 }
+			    
+				 
+			 }
+			 
+			 
+			 return null;
+
 	}
+	 
+	 
+	 SysDeptDto findChar(int dept_id,SysDeptDto dto)
+	 {
+		 for (int i = 0; i < dto.getChild().size(); i++) {
+			 SysDeptDto dto1 = dto.getChild().get(i);
+			 if (dto.getId() == dept_id) {
+				 return dto;
+			 }
+		    
+			 
+		 }
+		 
+		 return null;
+	 }
 	
 }

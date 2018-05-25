@@ -50,8 +50,8 @@ public class SysDeptServiceTest {
 		
 		 SysDeptDto moden = this.depservice.findDeptById(12);
 		 moden.setOperateTime(new Date());
-		 moden.setParentId(1);
-		 moden.setName("jjjjjj");
+		 moden.setParentId(2);
+		 moden.setName("ssss");
 		 moden.setSeq(1);
 		 this.depservice.updateDept(moden);
 		//System.out.println(list);
